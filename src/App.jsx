@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
 
-import SearchBar from './containers/SearchBar.jsx';
-import Playlist from './containers/Playlist.jsx';
+import SearchBar from './components/SearchBar/SearchBar.jsx';
+import Playlist from './components/Playlist/Playlist.jsx';
 function App() {
 
 

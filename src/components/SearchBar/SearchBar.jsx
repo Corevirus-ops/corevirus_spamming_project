@@ -1,7 +1,7 @@
 import react, {useState, useEffect} from 'react';
 
-import SearchBarTool from '../components/SearchBarTool.jsx';
-import SearchResults from '../components/SearchResults.jsx';
+import SearchBarTool from './SearchBarTool.jsx';
+import SearchResults from './SearchResults.jsx';
 
 function SearchBar() {
     const [query, setQuery] = useState('')

@@ -1,5 +1,5 @@
 import react from 'react';
-import Music from './Music.jsx';
+import Music from '../Music.jsx';
 
 
 function SearchResults({searchFor}) {
