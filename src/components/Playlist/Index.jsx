@@ -23,6 +23,35 @@ clearStage();
 
     }
 
+    function handlePlaylistNameChange(oldName, newName) {
+    setPlaylist(prevArray =>
+      prevArray.map(playlist =>
+        playlist.name === oldName
+          ? { ...playlist, name: newName }
+          : playlist
+      )
+    );
+
+    }
+
+       function handleRemoveSong(oldName, indexToRemove) {
+            setPlaylist(prevArray =>
+      prevArray.map(playlist =>
+        playlist.name === oldName
+          ? { ...playlist, songs: playlist.songs.filter((_, i) => i !== indexToRemove)
+           }
+          : playlist
+      )
+    );
+    }
+
+    function handleDeletePlaylist(name) {
+                  setPlaylist(prevArray =>
+      prevArray.filter(playlist =>
+        playlist.name !== name)
+    );
+    }
+
 
     useEffect(() => {
 
@@ -31,7 +60,7 @@ clearStage();
    
     return (
         <>
-        <PlaylistTool CreatePlaylist={handleCreatePlaylist} playlist={playlist} stagedSongs={stageSong} removeStaged={handleRemoveFromStaged} />
+        <PlaylistTool CreatePlaylist={handleCreatePlaylist} playlist={playlist} stagedSongs={stageSong} removeStaged={handleRemoveFromStaged} nameChange={handlePlaylistNameChange} removeSong={handleRemoveSong} removePlaylist={handleDeletePlaylist}/>
         </>
     )
 

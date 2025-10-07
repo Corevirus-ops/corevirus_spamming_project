@@ -1,9 +1,15 @@
-import react from 'react';
+import react, {useState} from 'react';
 import './Playlist.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'; 
 
 function PlaylistTool(props) {
+    const [barActive, setBarActive] = useState(false);
+    const [newName, setNewName] = useState('');
+
+    function changeName(e) {
+        setNewName(e.target.value);
+    }
 
     return (
         <section className='result'>
@@ -34,13 +40,20 @@ function PlaylistTool(props) {
                 {props.playlist.length > 0 ? (
                 props.playlist.map((item, index) => (
                     <li key={index}>
-                            <div>{item.name}</div>
+                            <button id="currentName" type="button" onClick={() => setBarActive(barActive ? false : true)}>{item.name}</button>
+                            {!barActive ? <></> : 
+                            <>
+                            <input type='text' value={newName} onChange={changeName}></input>
+                            <button id="nameChange" type="button" onClick={() => props.nameChange(item.name, newName)}>Change</button>
+                            <button id="deletePlaylist" type="button" onClick={() => props.removePlaylist(item.name)}>Delete</button>
+                            </>}
 
                         <ul>
                             {item.songs.map((track, trackIndex) => ( 
                                 
                                 <li key={trackIndex} >
                                     <div>{track}</div>
+                                    <button id="songRemove" type="button" onClick={() => props.removeSong(item.name, trackIndex)}><FontAwesomeIcon icon={faTrash} /></button>
                                 </li>
                             ))}
                         </ul>
