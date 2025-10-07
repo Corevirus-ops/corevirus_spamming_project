@@ -7,7 +7,7 @@ import { faCirclePlay, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
 
-function SearchResults({searchFor}) {
+function SearchResults({searchFor, stageSong}) {
 
     if (searchFor === '') {
         return;
@@ -22,6 +22,12 @@ function SearchResults({searchFor}) {
     );
 
 
+    function handleAddToPlaylist(e) {
+        stageSong(e.target.previousSibling.innerHTML);
+    }
+
+
+
 
 
 
@@ -33,14 +39,15 @@ function SearchResults({searchFor}) {
             {results.length >= 0 ? (
                 results.map((item, index) => (
                     <li key={index}>
-                        <div>{item.albumTitle} {`(Album prod by ${item.artist})`}
-                                <button><FontAwesomeIcon icon={faPlus} size="lg" /></button>
+                        <div> 
+                            <div>{item.albumTitle} {`(Album prod by ${item.artist})`}</div>
                                 <button><FontAwesomeIcon icon={faCirclePlay} size="lg"/></button>
                             </div>
                         <ul>
-                            {item.tracks.map((track, trackIndex) => (
-                                <li key={trackIndex} >{track} {`(by ${item.artist})`} 
-                                <button><FontAwesomeIcon icon={faPlus} size="lg" /></button>
+                            {item.tracks.map((track, trackIndex) => ( 
+                                <li key={trackIndex} >
+                                    <div>{track} {`(by ${item.artist})`}</div>
+                                <button id="addToPlaylist2" type="button" onClick={handleAddToPlaylist}><FontAwesomeIcon icon={faPlus} size="lg" /></button>
                                 <button><FontAwesomeIcon icon={faCirclePlay} size="lg"/></button>
                                 </li>
                             ))}

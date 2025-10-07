@@ -4,7 +4,7 @@ import SearchBarTool from './SearchBarTool.jsx';
 import SearchResults from './SearchResults.jsx';
 //import './SearchBar.css';
 
-function SearchBar() {
+function SearchBar({stageSong}) {
     const [query, setQuery] = useState('')
       
 
@@ -20,7 +20,7 @@ function SearchBar() {
             <SearchBarTool  setQuery={setQuery} />
         </nav>
         <div>
-        <SearchResults  searchFor={query} />
+        <SearchResults  searchFor={query} stageSong={stageSong} />
         </div>
         
 

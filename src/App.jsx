@@ -7,6 +7,11 @@ function App() {
   const [stagedSong, setStagedSong] = useState([]);
   function handleStageSong(data) {
     setStagedSong((prevItems) => [...prevItems, data]);
+
+  }
+
+  function handleClearStageSong() {
+setStagedSong([]);
   }
 
 
@@ -15,7 +20,7 @@ function App() {
     <section className='Container'>
     <h1 className='header'>Jammming</h1>
 
-        <Playlist />
+        <Playlist stageSong={stagedSong} clearStage={handleClearStageSong}/> 
     <SearchBar stageSong={handleStageSong}/>
 
     </section>

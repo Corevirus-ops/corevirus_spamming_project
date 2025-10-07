@@ -1,17 +1,17 @@
 import react, {useState, useEffect} from 'react'
 import PlaylistTool from './PlaylistTool.jsx';
-import './Playlist.css';
 
-function Playlist() {
+function Playlist({stageSong, clearStage}) {
     const [playlist, setPlaylist] = useState([]);
 
     function handleCreatePlaylist(e) {
 
         setPlaylist(prevArray => [...prevArray,    { 
-            id: playlist.length + 1,
             name: e.target.previousSibling.value,
-            songs: [],
+            songs: [stageSong],
            }]);
+
+clearStage();
 
     }
 
@@ -23,7 +23,7 @@ function Playlist() {
    
     return (
         <>
-        <PlaylistTool CreatePlaylist={handleCreatePlaylist} />
+        <PlaylistTool CreatePlaylist={handleCreatePlaylist} playlist={playlist} stagedSongs={stageSong} />
         </>
     )
 
