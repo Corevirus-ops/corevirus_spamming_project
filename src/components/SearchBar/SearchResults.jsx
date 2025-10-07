@@ -2,7 +2,7 @@ import react from 'react';
 import Music from '../Music.jsx';
 import './SearchBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCirclePlay, faPlus } from '@fortawesome/free-solid-svg-icons'; 
+import {  faPlus } from '@fortawesome/free-solid-svg-icons'; 
 
 
 
@@ -36,8 +36,7 @@ function SearchResults({searchFor, stageSong}) {
                             {item.tracks.map((track, trackIndex) => ( 
                                 <li key={trackIndex} >
                                     <div>{track} {`(by ${item.artist})`}</div>
-                                <button id="addToPlaylist2" type="button" onClick={() => stageSong(`${track} (by) ${item.artist}`)}><FontAwesomeIcon icon={faPlus} size="lg" /></button>
-                                <button><FontAwesomeIcon icon={faCirclePlay} size="lg"/></button>
+                                <button id="addToPlaylist2" type="button" onClick={() => stageSong(`${track} (by) ${item.artist}`)}><FontAwesomeIcon icon={faPlus} size="xs" /></button>
                                 </li>
                             ))}
                         </ul>

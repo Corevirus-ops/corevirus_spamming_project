@@ -6,6 +6,8 @@
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
+    float: right;
+        margin-right: 40px;
 
 
 }
@@ -17,10 +19,6 @@
     margin: 5px;
 }
 
-.input_button {
-    display: flex;
-    flex-direction: row;
-}
 
 .bubble { 
     background-color: #242424;
@@ -42,6 +40,7 @@ input {
     justify-content: space-evenly;
 }
 
+
 .results button {
     margin: 5px;
     font-size: 1.3rem;
@@ -55,9 +54,17 @@ input {
     border: 2px solid black;
     border-radius: 2%;
     padding: 20px;
+
+}
+
+.BoxedDiv button {
+    padding: 5px;
 }
 .BoxedDiv li {
     list-style: none;
-    border-top: 2px solid black;
+    border: 3px solid black;
+    margin: 5px;
+    display: inline-flex;
+    padding: 5px;
 }
 
