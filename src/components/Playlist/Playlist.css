@@ -1,10 +1,22 @@
 .playlist {
     display: flex;
-    align-items: center;
-    justify-content: space-evenly;    
-    margin: 10px;
     text-align: center;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+    background-color: #242424;
+    border: 2px solid black;
+    border-radius: 5%;
+    float: left;
+
 }
+
+.playlist li {
+    display: flex;
+    padding: 20px;
+}
+
 
 .playlist label {
     margin: 5px;
@@ -15,10 +27,6 @@ input {
     text-align: center;
 }
 
-.bubble { 
-    background-color: #242424;
-    border-radius: 5%;
-    border: 2px solid black;
-    padding: 10px;
-    margin: 10px;
-}
+
+
+

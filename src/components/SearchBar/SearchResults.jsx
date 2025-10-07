@@ -14,19 +14,13 @@ function SearchResults({searchFor, stageSong}) {
     }
 
     const searchTerm = searchFor.toLowerCase();
+
     
      const results = Music.filter(item =>
         item.albumTitle.toLowerCase().includes(searchTerm) ||
         item.artist.toLowerCase().includes(searchTerm) ||
         item.tracks.some((track) => track.toLowerCase().includes(searchTerm))
     );
-
-
-    function handleAddToPlaylist(e) {
-        stageSong(e.target.previousSibling.innerHTML);
-    }
-
-
 
 
 
@@ -37,22 +31,16 @@ function SearchResults({searchFor, stageSong}) {
             <div className="BoxedDiv">
                 <h3>Results:</h3>
             {results.length >= 0 ? (
-                results.map((item, index) => (
-                    <li key={index}>
-                        <div> 
-                            <div>{item.albumTitle} {`(Album prod by ${item.artist})`}</div>
-                                <button><FontAwesomeIcon icon={faCirclePlay} size="lg"/></button>
-                            </div>
+                results.map((item) => (
                         <ul>
                             {item.tracks.map((track, trackIndex) => ( 
                                 <li key={trackIndex} >
                                     <div>{track} {`(by ${item.artist})`}</div>
-                                <button id="addToPlaylist2" type="button" onClick={handleAddToPlaylist}><FontAwesomeIcon icon={faPlus} size="lg" /></button>
+                                <button id="addToPlaylist2" type="button" onClick={() => stageSong(`${track} (by) ${item.artist}`)}><FontAwesomeIcon icon={faPlus} size="lg" /></button>
                                 <button><FontAwesomeIcon icon={faCirclePlay} size="lg"/></button>
                                 </li>
                             ))}
                         </ul>
-                    </li>
                 ))
             ) : (
                 <li>No results found</li>

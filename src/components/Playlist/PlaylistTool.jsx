@@ -1,12 +1,14 @@
 import react from 'react';
 import './Playlist.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons'; 
 
 function PlaylistTool(props) {
 
     return (
-        <>
-        <section className="playlist">
-            <div className='bubble'>
+        <section className='result'>
+        <div className="playlist">
+            <div>
                 <label htmlFor='createPlaylist'>Create Playlist</label>
                 <div className='input_button'>
                     <input id='createPlaylist' name='createPlaylist' type='text' placeholder='MY AMAZING MIX'></input>
@@ -14,19 +16,21 @@ function PlaylistTool(props) {
                 </div>
             </div>
             <div>
+            <div>
                 <ul>
             {props.stagedSongs.length > 0  ? (
                 props.stagedSongs.map((item, index) => (
                     <li key={index}>
                         <div>{item}</div>
+                        <button id='removeStaged' type="button" onClick={() => props.removeStaged(index)}><FontAwesomeIcon icon={faTrash} /></button>
                     </li>
                 ))
             ) : (
-                <li>No Staged Playlist</li>
+                <li></li>
             )}
             </ul>
             </div>
-            <div>
+            <div className='result'>
                 {props.playlist.length > 0 ? (
                 props.playlist.map((item, index) => (
                     <li key={index}>
@@ -34,6 +38,7 @@ function PlaylistTool(props) {
 
                         <ul>
                             {item.songs.map((track, trackIndex) => ( 
+                                
                                 <li key={trackIndex} >
                                     <div>{track}</div>
                                 </li>
@@ -45,10 +50,10 @@ function PlaylistTool(props) {
                 <li>No Playlist</li>
             )}
             </div>
+            </div>
 
-
+        </div>
         </section>
-        </>
     )
 }
 

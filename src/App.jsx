@@ -15,12 +15,13 @@ setStagedSong([]);
   }
 
 
+
   return (
     <>
     <section className='Container'>
     <h1 className='header'>Jammming</h1>
 
-        <Playlist stageSong={stagedSong} clearStage={handleClearStageSong}/> 
+        <Playlist stageSong={stagedSong} clearStage={handleClearStageSong} setStage={setStagedSong}/> 
     <SearchBar stageSong={handleStageSong}/>
 
     </section>
