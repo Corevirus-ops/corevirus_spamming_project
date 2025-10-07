@@ -1,5 +1,10 @@
 import react from 'react';
 import Music from '../Music.jsx';
+import './SearchBar.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCirclePlay, faPlus } from '@fortawesome/free-solid-svg-icons'; 
+
+
 
 
 function SearchResults({searchFor}) {
@@ -12,29 +17,42 @@ function SearchResults({searchFor}) {
     
      const results = Music.filter(item =>
         item.albumTitle.toLowerCase().includes(searchTerm) ||
-        item.artist.toLowerCase().includes(searchTerm)
+        item.artist.toLowerCase().includes(searchTerm) ||
+        item.tracks.some((track) => track.toLowerCase().includes(searchTerm))
     );
 
 
 
+
+
     return (
-        <ul>
-            {results.length > 0 ? (
+        <div>
+        <ul className="results">
+            <div className="BoxedDiv">
+                <h3>Results:</h3>
+            {results.length >= 0 ? (
                 results.map((item, index) => (
                     <li key={index}>
-                        <div>{item.albumTitle}</div>
-                        <div>{item.artist}</div>
+                        <div>{item.albumTitle} {`(Album prod by ${item.artist})`}
+                                <button><FontAwesomeIcon icon={faPlus} size="lg" /></button>
+                                <button><FontAwesomeIcon icon={faCirclePlay} size="lg"/></button>
+                            </div>
                         <ul>
                             {item.tracks.map((track, trackIndex) => (
-                                <li key={trackIndex} >{track}</li>
+                                <li key={trackIndex} >{track} {`(by ${item.artist})`} 
+                                <button><FontAwesomeIcon icon={faPlus} size="lg" /></button>
+                                <button><FontAwesomeIcon icon={faCirclePlay} size="lg"/></button>
+                                </li>
                             ))}
                         </ul>
                     </li>
                 ))
             ) : (
-                <li className="p-2 text-gray-500">No results found</li>
+                <li>No results found</li>
             )}
+            </div>
         </ul>
+        </div>
     );
 
 }

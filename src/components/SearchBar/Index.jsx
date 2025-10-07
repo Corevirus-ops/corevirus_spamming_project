@@ -2,6 +2,7 @@ import react, {useState, useEffect} from 'react';
 
 import SearchBarTool from './SearchBarTool.jsx';
 import SearchResults from './SearchResults.jsx';
+//import './SearchBar.css';
 
 function SearchBar() {
     const [query, setQuery] = useState('')
@@ -14,13 +15,16 @@ function SearchBar() {
 
 
     return (
-        <>
+        <section>
         <nav>
             <SearchBarTool  setQuery={setQuery} />
         </nav>
+        <div>
         <SearchResults  searchFor={query} />
+        </div>
+        
 
-        </>
+        </section>
     )
 
 }
