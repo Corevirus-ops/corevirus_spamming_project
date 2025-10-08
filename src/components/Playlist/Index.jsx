@@ -34,6 +34,18 @@ clearStage();
 
     }
 
+        function handleAddToList(playlistName, stageSong) {
+    setPlaylist(prevArray =>
+      prevArray.map(playlist =>
+        playlist.name === playlistName
+          ? { ...playlist, songs: [...playlist.songs, stageSong]}
+          : playlist
+      )
+    );
+    clearStage();
+
+    }
+
        function handleRemoveSong(oldName, indexToRemove) {
             setPlaylist(prevArray =>
       prevArray.map(playlist =>
@@ -53,14 +65,11 @@ clearStage();
     }
 
 
-    useEffect(() => {
-
-    }, [playlist, stageSong])
 
    
     return (
         <>
-        <PlaylistTool CreatePlaylist={handleCreatePlaylist} playlist={playlist} stagedSongs={stageSong} removeStaged={handleRemoveFromStaged} nameChange={handlePlaylistNameChange} removeSong={handleRemoveSong} removePlaylist={handleDeletePlaylist}/>
+        <PlaylistTool CreatePlaylist={handleCreatePlaylist} playlist={playlist} stagedSongs={stageSong} removeStaged={handleRemoveFromStaged} nameChange={handlePlaylistNameChange} removeSong={handleRemoveSong} removePlaylist={handleDeletePlaylist} addToList={handleAddToList}/>
         </>
     )
 
