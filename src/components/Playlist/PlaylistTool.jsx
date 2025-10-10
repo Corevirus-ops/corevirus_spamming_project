@@ -42,9 +42,11 @@ function PlaylistTool(props) {
             <div>
                 <ul>
             {props.stagedSongs.length > 0  ? (
-                props.stagedSongs.map((item, index) => (
+                props.stagedSongs.map((track, index) => (
                     <li key={index}>
-                        <div>{item}</div>
+                        <img src={track.albumURL} alt="Album Cover" />
+                        <div>{track.title}</div>
+                        <div>{track.artist}</div>
                         <button id='removeStaged' type="button" onClick={() => props.removeStaged(index)}><FontAwesomeIcon icon={faTrash} /></button>
                     </li>
                 ))
@@ -63,7 +65,7 @@ function PlaylistTool(props) {
                             <>
                             <input type='text' value={newName} onChange={changeName}></input>
                             <button id="nameChange" type="button" onClick={() => props.nameChange(item.name, newName)}>Change</button>
-                            <button id="addSongs to Playlist" type="button" onClick={() => props.addToList(item.name, props.stagedSongs)}>Add songs to List</button>
+                            <button id="addSongs to Playlist" type="button" onClick={() => props.addToList(item.name)}>Add songs to List</button>
                             <button id="deletePlaylist" type="button" onClick={() => props.removePlaylist(item.name)}>Delete</button>
                             </>}
 
@@ -71,7 +73,9 @@ function PlaylistTool(props) {
                             {item.songs.map((track, trackIndex) => ( 
                                 
                                 <li key={trackIndex} >
-                                    <div>{track}</div>
+                        <img src={track.albumURL} alt="Album Cover" />
+                        <div>{track.title}</div>
+                        <div>{track.artist}</div>
                                     <button id="songRemove" type="button" onClick={() => props.removeSong(item.name, trackIndex)}><FontAwesomeIcon icon={faTrash} /></button>
                                 </li>
                             ))}

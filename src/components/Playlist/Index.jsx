@@ -34,14 +34,18 @@ clearStage();
 
     }
 
-        function handleAddToList(playlistName, stageSong) {
-    setPlaylist(prevArray =>
+        function handleAddToList(playlistName) {
+          stageSong.map(track => {
+                setPlaylist(prevArray =>
       prevArray.map(playlist =>
         playlist.name === playlistName
-          ? { ...playlist, songs: [...playlist.songs, stageSong]}
+          ? { ...playlist, songs: [...playlist.songs, track]}
           : playlist
       )
     );
+            
+          })
+
     clearStage();
 
     }

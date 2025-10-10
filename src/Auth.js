@@ -1,14 +1,74 @@
+import SpotifyWebApi  from 'spotify-web-api-node';
+
+// credentials are optional
+export const spotifyApi = new SpotifyWebApi({
+  clientId: '0f70eecbf6ea43c39be1e1e94c15a100',
+  redirectUri: 'http://127.0.0.1:5173/'
+});
 
 
- async function getToken (code) {
-  try{
-           const redirectUri = 'http://[::1]:5173';
+const redirectUri = 'http://127.0.0.1:5173/';
 const clientId = '0f70eecbf6ea43c39be1e1e94c15a100';
+const scope = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-library-modify user-library-read';
+const authUrl = new URL("https://accounts.spotify.com/authorize")
 
+
+
+const generateRandomString = (length) => {
+  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const values = crypto.getRandomValues(new Uint8Array(length));
+  return values.reduce((acc, x) => acc + possible[x % possible.length], "");
+}
+
+
+const sha256 = async (plain) => {
+  const encoder = new TextEncoder()
+  const data = encoder.encode(plain)
+  return window.crypto.subtle.digest('SHA-256', data)
+}
+
+
+const base64encode = (input) => {
+  return btoa(String.fromCharCode(...new Uint8Array(input)))
+    .replace(/=/g, '')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_');
+}
+
+
+//to authorize our login
+    async function authorize() {
+        try {
+          localStorage.removeItem("code_verifier2")
+          const codeVerifier  = generateRandomString(64);
+          const hashed = await sha256(codeVerifier)
+const codeChallenge = base64encode(hashed);
+// generated in the previous step
+localStorage.setItem("code_verifier2", codeVerifier);
+
+const params =  {
+  response_type: 'code',
+  client_id: clientId,
+  scope,
+  code_challenge_method: 'S256',
+  code_challenge: codeChallenge,
+  redirect_uri: redirectUri,
+}
+
+
+authUrl.search = new URLSearchParams(params).toString();
+window.location.href = authUrl.toString();
+        }
+        catch (error) {
+            console.error('Authorization failed:', error);
+        }
+}
+
+
+const getToken = async (code) => {
 
   // stored in the previous step
-  const codeVerifier = localStorage.getItem('code_verifier');
-
+  const codeVerifier = localStorage.getItem("code_verifier2");
 
   const url = "https://accounts.spotify.com/api/token";
   const payload = {
@@ -19,7 +79,7 @@ const clientId = '0f70eecbf6ea43c39be1e1e94c15a100';
     body: new URLSearchParams({
       client_id: clientId,
       grant_type: 'authorization_code',
-      code,
+      code: code,
       redirect_uri: redirectUri,
       code_verifier: codeVerifier,
     }),
@@ -27,15 +87,12 @@ const clientId = '0f70eecbf6ea43c39be1e1e94c15a100';
 
   const body = await fetch(url, payload);
   const response = await body.json();
-console.log(response)
-  localStorage.setItem('access_token', response.access_token);
-  } catch (error) {
-    console.error('Authorization failed:', error);
-  }
-  
 
+
+  localStorage.setItem('access_token', response.access_token);
+  spotifyApi.setAccessToken(response.access_token);
+  console.log(spotifyApi)
 }
 
-export default getToken;
-
+export  {getToken, authorize};
 

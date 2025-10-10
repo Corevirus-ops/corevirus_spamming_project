@@ -1,53 +1,61 @@
-import react from 'react';
+import react, {useState} from 'react';
 import Music from '../Music.jsx';
 import './SearchBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faPlus } from '@fortawesome/free-solid-svg-icons'; 
+import {spotifyApi} from '../../Auth.js';
 
 
 
 
-function SearchResults({searchFor, stageSong}) {
+function SearchResults({searchFor, stageSong, result}) {
 
-    if (searchFor === '') {
+
+    if (!searchFor) {
         return;
     }
 
-    const searchTerm = searchFor.toLowerCase();
 
+    /*
     
+    const searchTerm = searchFor.toLowerCase();
      const results = Music.filter(item =>
         item.albumTitle.toLowerCase().includes(searchTerm) ||
         item.artist.toLowerCase().includes(searchTerm) ||
         item.tracks.some((track) => track.toLowerCase().includes(searchTerm))
     );
 
+*/
 
 
 
+
+let trackNum = 0;
     return (
         <div>
-        <ul className="results">
+        <div className="results">
             <div className="BoxedDiv">
                 <h3>Results:</h3>
-            {results.length >= 0 ? (
-                results.map((item) => (
-                        <ul>
-                            {item.tracks.map((track, trackIndex) => ( 
-                                <li key={trackIndex} >
-                                    <div>{track} {`(by ${item.artist})`}</div>
-                                <button id="addToPlaylist2" type="button" onClick={() => stageSong(`${track} (by) ${item.artist}`)}><FontAwesomeIcon icon={faPlus} size="xs" /></button>
-                                </li>
-                            ))}
-                        </ul>
+            {result.length > 0 ? (
+                result.map((track) => (
+
+                                <div key={trackNum += 1} >
+                                    <img src={track.albumURL} alt="Album Cover" />
+                                    <div>{track.title}</div>
+                                    <div>{track.artist}</div>
+                                <button id="addToPlaylist2" type="button" onClick={() => stageSong(track)}><FontAwesomeIcon icon={faPlus} size="xs" /></button>
+                                </div>
+
+
                 ))
             ) : (
-                <li>No results found</li>
+                <div>No results found</div>
             )}
             </div>
-        </ul>
+        </div>
         </div>
     );
+    
 
 }
 
