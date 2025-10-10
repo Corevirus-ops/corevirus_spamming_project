@@ -23,7 +23,7 @@ function PlaylistTool(props) {
         }
         
     }
-console.log(isChecked)
+
     return (
         <section className='result'>
         <div className="playlist">
