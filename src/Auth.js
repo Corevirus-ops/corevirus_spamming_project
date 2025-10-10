@@ -91,8 +91,17 @@ const getToken = async (code) => {
 
   localStorage.setItem('access_token', response.access_token);
   spotifyApi.setAccessToken(response.access_token);
-  console.log(spotifyApi)
+ getUserProfile()
 }
 
-export  {getToken, authorize};
+async function getUserProfile() {
+  spotifyApi.getMe()
+  .then(function(data) {
+    return data.body.id
+  }, function(err) {
+    console.log('Something went wrong!', err);
+  });
+}
+
+export  {getToken, authorize, getUserProfile};
 
