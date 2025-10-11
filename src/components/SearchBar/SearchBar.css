@@ -8,6 +8,7 @@
     flex-direction: column;
     float: right;
         margin-right: 40px;
+        color: white;
 
 
 }
@@ -28,6 +29,10 @@
     margin: 10px;
 }
 
+.bubble:hover {
+    box-shadow: 0 0 2px 2px #1db954;
+}
+
 input {
     text-align: center;
 }
@@ -36,35 +41,48 @@ input {
     display: flex;
     list-style: none;
     text-align: center;
-    align-items: center;
     justify-content: space-evenly;
-}
-
-
-.results button {
-    margin: 5px;
-    font-size: 1.3rem;
-  padding: 0.4em 1.0em;
- background-image: linear-gradient(to right, rgb(125, 21, 21), rgb(24, 24, 142));
+    color: white;
 }
 
 
 .BoxedDiv {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
     background-color: #242424;
     border: 2px solid black;
     border-radius: 2%;
-    padding: 20px;
+    padding: 50px;
+    overflow: auto;
 
 }
 
-.BoxedDiv button {
-    padding: 5px;
+.BoxedDiv:hover {
+    box-shadow: 0 0 2px 2px #1db954;
 }
-.BoxedDiv li {
-    list-style: none;
-    border: 3px solid black;
+
+.songDisplay {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #151515;
+    border: 2px solid black;
+    margin: 2px 5px;
+    padding: 2px;
+    font-size: 0.8em;
+}
+
+.songDisplay .title_artist {
+    display: flex;
+    flex-direction: column;
     margin: 5px;
-    display: inline-flex;
-    padding: 5px;
+    color: white;
 }
+
+.songDisplay:hover {
+    box-shadow: 0 0 2px 2px #1db954;
+}
+
 

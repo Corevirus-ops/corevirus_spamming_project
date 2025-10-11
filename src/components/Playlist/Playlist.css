@@ -2,14 +2,16 @@
     display: flex;
     text-align: center;
     flex-direction: column;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 40px;
     background-color: #242424;
     border: 2px solid black;
     border-radius: 5%;
     float: left;
+    margin: 5px;
 
+}
+
+.playlist:hover {
+     box-shadow: 0 0 2px 2px #1db954;
 }
 
 .playlist li {
@@ -26,6 +28,39 @@
 input {
     text-align: center;
 }
+
+.playlist_nav {
+    display: flex;
+    flex-direction: column;
+        text-align: center;
+        justify-content: center;
+}
+
+.playlist_item {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 5px;
+}
+
+.playlist_name {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 10px;
+
+}
+
+.playlist_main {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.playlist_main input {
+    margin: 10px;
+}
+
 
 
 

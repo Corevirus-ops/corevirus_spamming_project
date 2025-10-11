@@ -36,13 +36,16 @@ let trackNum = 0;
         <div className="results">
             <div className="BoxedDiv">
                 <h3>Results:</h3>
+                <img src='Primary_Logo_Green_RGB.svg' alt='spotifyLogo' style={{minHeight: '5vh', maxHeight: '10vh'}}/>
             {result.length > 0 ? (
                 result.map((track) => (
 
-                                <div key={trackNum += 1} >
+                                <div key={trackNum += 1} className='songDisplay' >
                                     <img src={track.albumURL} alt="Album Cover" />
+                                    <section className='title_artist'>
                                     <div>{track.title}</div>
                                     <div>{track.artist}</div>
+                                    </section>
                                 <button id="addToPlaylist2" type="button" onClick={() => stageSong(track)}><FontAwesomeIcon icon={faPlus} size="xs" /></button>
                                 </div>
 

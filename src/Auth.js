@@ -103,5 +103,14 @@ async function getUserProfile() {
   });
 }
 
-export  {getToken, authorize, getUserProfile};
+async function getUserData() {
+  spotifyApi.getMe()
+  .then(function(data) {
+    return data
+  }, function(err) {
+    console.log('Something went wrong!', err);
+  });
+}
+
+export  {getToken, authorize, getUserProfile, getUserData};
 
