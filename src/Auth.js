@@ -1,18 +1,17 @@
 import SpotifyWebApi  from 'spotify-web-api-node';
 
-// credentials are optional
-export const spotifyApi = new SpotifyWebApi({
-  clientId: '0f70eecbf6ea43c39be1e1e94c15a100',
-  redirectUri: 'https://splendid-rugelach-214f47.netlify.app/'
-});
 
 
-const redirectUri = 'https://splendid-rugelach-214f47.netlify.app/';
+const redirectUri = 'https://corevirusops-jammming.netlify.app/';
 const clientId = '0f70eecbf6ea43c39be1e1e94c15a100';
 const scope = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-library-modify user-library-read';
 const authUrl = new URL("https://accounts.spotify.com/authorize")
 
-
+// credentials are optional
+export const spotifyApi = new SpotifyWebApi({
+  clientId: clientId,
+  redirectUri: redirectUri
+});
 
 const generateRandomString = (length) => {
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
