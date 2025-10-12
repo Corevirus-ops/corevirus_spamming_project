@@ -3,11 +3,11 @@ import SpotifyWebApi  from 'spotify-web-api-node';
 // credentials are optional
 export const spotifyApi = new SpotifyWebApi({
   clientId: '0f70eecbf6ea43c39be1e1e94c15a100',
-  redirectUri: 'http://127.0.0.1:5173/'
+  redirectUri: 'https://splendid-rugelach-214f47.netlify.app/'
 });
 
 
-const redirectUri = 'http://127.0.0.1:5173/';
+const redirectUri = 'https://splendid-rugelach-214f47.netlify.app/';
 const clientId = '0f70eecbf6ea43c39be1e1e94c15a100';
 const scope = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-library-modify user-library-read';
 const authUrl = new URL("https://accounts.spotify.com/authorize")

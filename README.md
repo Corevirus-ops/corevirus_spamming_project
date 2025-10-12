@@ -12,4 +12,5 @@ A CodeAcademy Project intended to test my knowledge in:
 * Spotify Web API Node
 * Bootstrap
 * React
+* Font Awesome
 
